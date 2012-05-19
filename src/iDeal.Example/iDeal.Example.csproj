@@ -181,12 +181,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\idealsim_bank.cer">
+    <Content Include="App_Data\idealsim_bank.cer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Data\idealsim_private.pfx">
+    </Content>
+    <Content Include="App_Data\idealsim_private.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="Views\Home\Status.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
