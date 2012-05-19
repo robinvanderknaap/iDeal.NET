@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
 using iDeal.Base;
+using System.Diagnostics;
+using System.IO;
 
 namespace iDeal.Configuration
 {
@@ -63,7 +65,7 @@ namespace iDeal.Configuration
             
             try
             {
-                return password != null ? new X509Certificate2(absolutePath, password) : new X509Certificate2(absolutePath);
+                return password != null ? new X509Certificate2(absolutePath, password, X509KeyStorageFlags.MachineKeySet) : new X509Certificate2(absolutePath);
             }
             catch (Exception exception)
             {
