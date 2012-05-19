@@ -1,0 +1,12 @@
+﻿@model iDeal.Status.StatusResponse
+
+@{
+    ViewBag.Title = "Status";
+}
+
+<h3>Transaction status response from issuer</h3>
+<span>@Model.Status.ToString()</span>
+<br />
+<br />
+<br />
+<a href="@Url.Action("Index")">Make another payment</a>

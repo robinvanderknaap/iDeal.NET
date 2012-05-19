@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectoryRes xmlns="http://www.idealdesk.com/Message" version="1.1.0">
+    <createDateTimeStamp>2011-06-01T12:19:48.073Z</createDateTimeStamp>
+    <Acquirer>
+        <acquirerID>0020</acquirerID>
+    </Acquirer>
+    <Directory>
+        <directoryDateTimeStamp>2009-10-08T00:00:00.000Z</directoryDateTimeStamp>
+        <Issuer>
+            <issuerID>0121</issuerID>
+            <issuerName>Test Issuer</issuerName>
+            <issuerList>Short</issuerList>
+        </Issuer>
+        <Issuer>
+            <issuerID>0151</issuerID>
+            <issuerName>Test Issuer 2</issuerName>
+            <issuerList>Short</issuerList>
+        </Issuer>
+        <Issuer>
+            <issuerID>0171</issuerID>
+            <issuerName>Test Issuer 3</issuerName>
+            <issuerList>Long</issuerList>
+        </Issuer>
+    </Directory>
+</DirectoryRes>

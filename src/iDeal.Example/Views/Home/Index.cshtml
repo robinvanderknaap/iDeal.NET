@@ -1,0 +1,24 @@
+﻿@model iDeal.Example.Models.PaymentViewModel
+
+<section class="payment">
+    @using (Html.BeginForm())
+    {
+        <img src="@Url.Content("~/Images/ideal.png")" />
+
+        <h3>Test payment</h3> 
+    
+        <label>Amount</label>
+        <span>&euro; 500,-</span>    
+        <br class="clearer" />
+
+        <label>Choose your bank</label>
+        @Html.DropDownListFor(x => x.Issuer, Model.Issuers, "")
+        @Html.ValidationMessageFor(x => x.Issuer)
+        <br class="clearer" /> 
+    
+        <label>&nbsp;</label>
+        <input type="submit" value="Send" />    
+        <br class="clearer" /> 
+    }
+</section>
+

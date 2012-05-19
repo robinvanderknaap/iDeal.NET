@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AcquirerStatusRes xmlns="http://www.idealdesk.com/Message" version="1.1.0">
+    <createDateTimeStamp>2012-05-19T12:20:01.000Z</createDateTimeStamp>
+    <Acquirer>
+        <acquirerID>0008</acquirerID>
+    </Acquirer>
+    <Transaction>
+        <transactionID>0000000000078316</transactionID>
+        <status>Success</status>
+        <consumerName>Webpirates</consumerName>
+        <consumerAccountNumber>108429563</consumerAccountNumber>
+        <consumerCity>Meppel</consumerCity>
+    </Transaction>
+    <Signature>
+        <signatureValue>LAwZjEiH+Z8BAzRTNGopGq3OT8V80if3H6pKcNfWcyyXb0yqzYcX3/+vkTeirq+A4Sv7UuVdrcmGqzbZW7kDzX1/fxbyGahfYlsbysQLvxDdR6ExIjHohRx1RHwFZ1NO1hbw3R4ab27hHBz43gtytz4YP5nT6B9zwW+eHIlNIuY=</signatureValue>
+        <fingerprint>6CFC36389C7A3C49440B8733D258CB2167FAC18F</fingerprint>
+    </Signature>
+</AcquirerStatusRes>

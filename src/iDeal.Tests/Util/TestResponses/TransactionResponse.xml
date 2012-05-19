@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AcquirerTrxRes xmlns="http://www.idealdesk.com/Message" version="1.1.0">
+    <createDateTimeStamp>2012-05-19T16:34:35.000Z</createDateTimeStamp>
+    <Acquirer>
+        <acquirerID>0008</acquirerID>
+    </Acquirer>
+    <Issuer>
+        <issuerAuthenticationURL>https://www.ideal-simulator.nl/professional/payment.php?trxid=0000000000078329&amp;ec=498b1489-b393-44</issuerAuthenticationURL>
+    </Issuer>
+    <Transaction>
+        <transactionID>0000000000078329</transactionID>
+        <purchaseID>526fd526-5825-4a</purchaseID>
+    </Transaction>
+</AcquirerTrxRes>

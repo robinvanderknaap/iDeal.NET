@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AcquirerStatusRes xmlns="http://www.idealdesk.com/Message" version="1.1.0">
+    <createDateTimeStamp>2012-05-19T15:11:05.000Z</createDateTimeStamp>
+    <Acquirer>
+        <acquirerID>0008</acquirerID>
+    </Acquirer>
+    <Transaction>
+        <transactionID>0000000000078321</transactionID>
+        <status>Cancelled</status>
+        <consumerName></consumerName>
+        <consumerAccountNumber></consumerAccountNumber>
+        <consumerCity></consumerCity>
+    </Transaction>
+    <Signature>
+        <signatureValue>RTK+t4Nr5LRPfgOhWkUpECFts4GWbu2kKTw7VYmISdBl870D3rYIhg9gdaDPhXuj25hJ/ztwbCNKYNf+MnymTeOszIm1xdWDvuCHe4WT3F8vA+6rZIiPBUcVqFfyXAfj8Tr9pSsFWppWxzYddo0tGOkF5g8JxHB91NltEdWtzbY=</signatureValue>
+        <fingerprint>6CFC36389C7A3C49440B8733D258CB2167FAC18F</fingerprint>
+    </Signature>
+</AcquirerStatusRes>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AcquirerStatusRes xmlns="http://www.idealdesk.com/Message" version="1.1.0">
+    <createDateTimeStamp>2012-05-19T15:12:31.000Z</createDateTimeStamp>
+    <Acquirer>
+        <acquirerID>0008</acquirerID>
+    </Acquirer>
+    <Transaction>
+        <transactionID>0000000000078323</transactionID>
+        <status>Bogus</status>
+        <consumerName></consumerName>
+        <consumerAccountNumber></consumerAccountNumber>
+        <consumerCity></consumerCity>
+    </Transaction>
+    <Signature>
+        <signatureValue>UiyTyuINsQwL1FmpSnhvcHQ1p/wTUiE07Ag4XAIETFCNPGK5ag0PfktPfAYKXX3uB38fhuaoMddWlcpQ9nJLDe+i+LKxg37ILGs7+LUgROGyV5DpSM78pvD3hanP8r4bLPuvNBNJYpeddcb91iLcopbNGHBudZufeaX8mT8xMkc=</signatureValue>
+        <fingerprint>6CFC36389C7A3C49440B8733D258CB2167FAC18F</fingerprint>
+    </Signature>
+</AcquirerStatusRes>
