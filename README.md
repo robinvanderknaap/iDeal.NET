@@ -3,8 +3,8 @@ iDeal is the leading online payment platform in the Netherlands. iDeal.NET provi
 The project contains a sample application which gives a basic example of the usage of iDeal.NET. A live version of the sample application is available [here](http://ideal.webpirates.nl). The sample application uses [www.ideal-simulator.nl](http://www.ideal-simulator.nl) to simulate the entire process of paying and retrieving status of payments.
 
 ## iDeal versions
-iDeal.NET is aimed at iDeal Professional (Rabobank), iDeal Zelfbouw (ABN Amro), iDeal Integrated and iDeal Advanced (ING Bank). These versions allow for realtime feedback on transactions. 
-iDeal.NET does not yet support iDeal Basic (ING Bank), iDeal Hosted , iDeal Lite (Rabobank) and iDeal Zakelijk which are easily implemented in applications but do not allow for realtime feeback on transactions.
+iDeal.NET is aimed at iDeal Professional (Rabobank), iDeal Zelfbouw (ABN Amro), iDeal Integrated and iDeal Advanced (ING Bank). These versions allow for real-time feedback on transactions. 
+iDeal.NET does not yet support iDeal Basic (ING Bank), iDeal Hosted , iDeal Lite (Rabobank) and iDeal Zakelijk which are easily implemented in applications but do not allow for real-time feedback on transactions.
 
 ## NuGet
 The easiest way to get started with iDeal.NET is to use the NuGet package
@@ -31,7 +31,7 @@ Second implement the iDeal section
       <bankCertificate filename="App_Data\idealsim_bank.cer" />
     </iDeal>
 
-The merchant id is the unique identifier you received from your iDeal provider(acquirer). The acquirer url points to the url of your acquirer which handles all iDeal requests. Certificate filename specifies the relative path to the file containing your private key. The bank certificate filename points to your public key. It's also possible to specifiy a certificate in your certificate store, this is explained below.
+The merchant id is the unique identifier you received from your iDeal provider(acquirer). The acquirer url points to the url of your acquirer which handles all iDeal requests. Certificate filename specifies the relative path to the file containing your private key. The bank certificate filename points to your public key. It's also possible to specify a certificate in your certificate store, this is explained below.
 
 ## Directory request
 In order for customers to make a payment, they first have to choose their bank. To retrieve a list of banks (issuers) which consumers can choose from, you have to send a directory request to your iDeal provider (acquirer). This is how you send a directory request with iDeal.NET:
@@ -62,26 +62,29 @@ When a customer has choosen an issuer you can send a transaction request to the 
 The following parameters have to be specified to perform a transaction request
  
  - issuerId: Unique identifier of the selected issuer
- - merchantReturnUrl: Url to which the customers is redirected after the paymentproces finishes
+ - merchantReturnUrl: Url to which the customers is redirected after the payment process finishes
  - purchaseId: Unique identifier of payment
  - amount: The amount in cents
  - expirationPeriod: Number of minutes before payment expires
- - description: Description of the payment, will be shown on customer's bankstatement.
+ - description: Description of the payment, will be shown on customer's bank statement.
  - entranceCode: ...
  	
-The response of a transactionrequst holds the following information:
+The response of a transactionrequest holds the following information:
 
  - TransactionId: Uniquely identifies the transaction, used to retrieve the status of a transaction
  - IssuerAuthenticationUrl: Url of the selected issuer to which you have to redirect the customer to make the payment
  - PurchaseId: Id to identify the payment
  
-When the response from your acquirer is received you can redirect the customer to the issuer who will be performing the iDeal payment (IssuerAuthenticationUrl). It's important to store the transaction id, you will need this to retrieve the status on the landingpage you specified to which the customer will be redirected when finishing the payment.
+When the response from your acquirer is received you can redirect the customer to the issuer who will be performing the iDeal payment (IssuerAuthenticationUrl). It's important to store the transaction id, you will need this to retrieve the status on the landing page you specified to which the customer will be redirected when finishing the payment.
 
 ## Status request
-When a customer is redirected back from the issuer after the payment finishes you can perform a status request to retrieve the status of the transaction:
+When a customer has finished the payment, the customer is redirected back to the url you specified when sending the transaction request. The issuer will add two query parameters to the url 'trxid' and 'ec'. Something like: http://ideal.webpirates.nl/Home/Status?trxid=0000000000078401&ec=ce6462a2-ce87-46
+Parameter 'trxid' holds the transaction id, and 'ec' holds the entrance code you specified in the transaction request. With the transaction id you can retrieve the status of the payment:
 
 	var iDealService = new iDealService();
 	var statusResponse = iDealService.SendStatusRequest(transactionId);
+	
+The response contains the status, which can be Success, Failure, Cancelled, Open or Expired. The response also contains the account number, name and city of the customer.
 
 ## Certificates
 
