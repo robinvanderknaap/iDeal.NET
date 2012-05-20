@@ -8,7 +8,7 @@
     <licenseUrl>https://github.com/robinvanderknaap/iDeal.NET</licenseUrl>
     <projectUrl>https://github.com/robinvanderknaap/iDeal.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>iDeal is a Dutch payment system. iDeal.NET is a library aimed at easing the inplementation of iDeal into asp.net websites.</description>
+    <description>iDeal.NET provides an API to easily communicate with your iDeal provider and integrate iDeal payments into your .NET (web)applications.</description>
     <tags>iDeal, asp.net, payment</tags>    
   </metadata>
 </package>
