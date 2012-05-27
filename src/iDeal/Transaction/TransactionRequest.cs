@@ -132,7 +132,7 @@ namespace iDeal.Transaction
             MerchantReturnUrl = merchantReturnUrl;
             PurchaseId = purchaseId;
             Amount = amount;
-            ExpirationPeriod = expirationPeriod;
+            ExpirationPeriod = expirationPeriod ?? TimeSpan.FromMinutes(30); // Default 30 minutes expiration
             Description = description;
             EntranceCode = entranceCode;
         }

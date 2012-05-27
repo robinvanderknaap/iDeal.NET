@@ -101,5 +101,13 @@ namespace iDeal.Tests.Unit
             var xml = transactionRequest.ToXml(new SignatureProvider(Certificate, BankCertificate));
             Assert.IsNotNullOrEmpty(xml);
         }
+
+        [Test]
+        public void DefaultExpirationPeriodIs30Minutes()
+        {
+            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, null, "iMac 27", "1");
+
+            Assert.AreEqual(TimeSpan.FromMinutes(30), transactionRequest.ExpirationPeriod);
+        }
     }
 }
