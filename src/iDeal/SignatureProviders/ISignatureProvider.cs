@@ -16,13 +16,13 @@
         bool VerifySignature(string signature, string messageDigest);
 
         /// <summary>
-        /// Gets thumbprint of certificate, used in each request to the ideal api (stored in field token)
+        /// Gets thumbprint of private certificate, used in each request to the ideal api (stored in field token)
         /// </summary>
-        string GetThumbprint();
+        string GetThumbprintPrivateCertificate();
 
         /// <summary>
-        /// Gets thumbprint of bank certificate, used in status response from ideal api
+        /// Gets thumbprint of the public certificate, used in status response from ideal api
         /// </summary>
-        string GetThumbprintBankCertificate();
+        string GetThumbprintPublicCertificate();
     }
 }

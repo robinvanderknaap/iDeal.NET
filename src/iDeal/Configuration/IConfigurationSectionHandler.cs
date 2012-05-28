@@ -5,12 +5,12 @@ namespace iDeal.Configuration
         string MerchantId { get; }
         int MerchantSubId { get; }
         string AcquirerUrl { get; }
-        string CertificateName { get; }
-        string CertificateStoreName { get; }
-        string CertificateFilename { get; }
-        string CertificatePassword { get; }
-        string BankCertificateName { get; }
-        string BankCertificateStoreName { get; }
-        string BankCertificateFilename { get; }
+        string PrivateCertificateName { get; }
+        string PrivateCertificateStoreName { get; }
+        string PrivateCertificateFilename { get; }
+        string PrivateCertificatePassword { get; }
+        string PublicCertificateName { get; }
+        string PublicCertificateStoreName { get; }
+        string PublicCertificateFilename { get; }
     }
 }

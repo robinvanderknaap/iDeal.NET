@@ -154,7 +154,7 @@ namespace iDeal.Transaction
                             new XElement(xmlNamespace + "merchantID", MerchantId.PadLeft(9, '0')),
                             new XElement(xmlNamespace + "subID", MerchantSubId),
                             new XElement(xmlNamespace + "authentication", "SHA1_RSA"),
-                            new XElement(xmlNamespace + "token", signatureProvider.GetThumbprint()),
+                            new XElement(xmlNamespace + "token", signatureProvider.GetThumbprintPrivateCertificate()),
                             new XElement(xmlNamespace + "tokenCode", signatureProvider.GetSignature(MessageDigest)),
                             new XElement(xmlNamespace + "merchantReturnURL", MerchantReturnUrl)
                         ),

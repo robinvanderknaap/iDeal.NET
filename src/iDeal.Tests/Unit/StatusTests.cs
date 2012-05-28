@@ -41,7 +41,7 @@ namespace iDeal.Tests.Unit
         public void CanGetXmlRepresentationOfStatusRequest()
         {
             var statusRequest = new StatusRequest("123456789", 0, "0123456789123456");
-            var xmlStatusRequest = statusRequest.ToXml(new SignatureProvider(Certificate, BankCertificate));
+            var xmlStatusRequest = statusRequest.ToXml(new SignatureProvider(PrivateCertificate, PublicCertificate));
 
             Assert.IsNotNullOrEmpty(xmlStatusRequest);
         }

@@ -15,8 +15,8 @@ namespace iDeal.Configuration
         public string MerchantId { get; private set; }
         public int MerchantSubId { get; private set; }
         public string AcquirerUrl { get; private set; }
-        public X509Certificate2 Certificate { get; private set; }
-        public X509Certificate2 BankCertificate { get; private set; }
+        public X509Certificate2 PrivateCertificate { get; private set; }
+        public X509Certificate2 PublicCertificate { get; private set; }
 
         public DefaultConfiguration(IConfigurationSectionHandler configurationSectionHandler)
         {
@@ -26,36 +26,36 @@ namespace iDeal.Configuration
 
             // Validate private certificate settings:
             // Make sure either filename or storename is specified
-            if(configurationSectionHandler.CertificateFilename.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.CertificateStoreName.IsNullEmptyOrWhiteSpace())
+            if(configurationSectionHandler.PrivateCertificateFilename.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.PrivateCertificateStoreName.IsNullEmptyOrWhiteSpace())
                 throw new ConfigurationErrorsException("You should either specify a filename or storename to specify the certificate's location");
 
             // When filename is set, password should also be set
-            if(!configurationSectionHandler.CertificateFilename.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.CertificatePassword.IsNullEmptyOrWhiteSpace())
+            if(!configurationSectionHandler.PrivateCertificateFilename.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.PrivateCertificatePassword.IsNullEmptyOrWhiteSpace())
                 throw new ConfigurationErrorsException("Password is required. Only when certificate is loaded from filesystem");
 
             // When storename is set, certificate name should also be set
-            if (!configurationSectionHandler.CertificateStoreName.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.CertificateName.IsNullEmptyOrWhiteSpace())
+            if (!configurationSectionHandler.PrivateCertificateStoreName.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.PrivateCertificateName.IsNullEmptyOrWhiteSpace())
                 throw new ConfigurationErrorsException("Certificate name is required when loading certificate from store");
 
             // Validate bank certificate settings in config
             // Make sure either filename or storename is specified
-            if (configurationSectionHandler.BankCertificateFilename.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.BankCertificateStoreName.IsNullEmptyOrWhiteSpace())
+            if (configurationSectionHandler.PublicCertificateFilename.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.PublicCertificateStoreName.IsNullEmptyOrWhiteSpace())
                 throw new ConfigurationErrorsException("You should either specify a filename or storename to specify the bank certificate's location");
 
             // When storename is set, certificate name should also be set
-            if (!configurationSectionHandler.BankCertificateStoreName.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.BankCertificateName.IsNullEmptyOrWhiteSpace())
+            if (!configurationSectionHandler.PublicCertificateStoreName.IsNullEmptyOrWhiteSpace() && configurationSectionHandler.PublicCertificateName.IsNullEmptyOrWhiteSpace())
                 throw new ConfigurationErrorsException("Certificate name is required when loading bank certificate from store");
 
 
             // Set private certificate, filename takes precedence over certificate store
-            Certificate = !configurationSectionHandler.CertificateFilename.IsNullEmptyOrWhiteSpace()
-                              ? GetCertificateFromFile(configurationSectionHandler.CertificateFilename, configurationSectionHandler.CertificatePassword)
-                              : GetCertificateFromStore(configurationSectionHandler.CertificateStoreName, configurationSectionHandler.CertificateName);
+            PrivateCertificate = !configurationSectionHandler.PrivateCertificateFilename.IsNullEmptyOrWhiteSpace()
+                              ? GetCertificateFromFile(configurationSectionHandler.PrivateCertificateFilename, configurationSectionHandler.PrivateCertificatePassword)
+                              : GetCertificateFromStore(configurationSectionHandler.PrivateCertificateStoreName, configurationSectionHandler.PrivateCertificateName);
 
             // Set bank certificate, filename takes precedence over certificate store
-            BankCertificate = !configurationSectionHandler.BankCertificateFilename.IsNullEmptyOrWhiteSpace()
-                              ? GetCertificateFromFile(configurationSectionHandler.BankCertificateFilename, null)
-                              : GetCertificateFromStore(configurationSectionHandler.BankCertificateStoreName, configurationSectionHandler.BankCertificateName);
+            PublicCertificate = !configurationSectionHandler.PublicCertificateFilename.IsNullEmptyOrWhiteSpace()
+                              ? GetCertificateFromFile(configurationSectionHandler.PublicCertificateFilename, null)
+                              : GetCertificateFromStore(configurationSectionHandler.PublicCertificateStoreName, configurationSectionHandler.PublicCertificateName);
             
         }
         

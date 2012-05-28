@@ -7,13 +7,13 @@ namespace iDeal.SignatureProviders
 {
     public class SignatureProvider : ISignatureProvider
     {
-        private readonly X509Certificate2 _certificate;
-        private readonly X509Certificate2 _bankCertificate;
+        private readonly X509Certificate2 _privateCertificate;
+        private readonly X509Certificate2 _publicCertificate;
 
-        public SignatureProvider(X509Certificate2 certificate, X509Certificate2 bankCertificate)
+        public SignatureProvider(X509Certificate2 privateCertificate, X509Certificate2 publicCertificate)
         {
-            _certificate = certificate;
-            _bankCertificate = bankCertificate;
+            _privateCertificate = privateCertificate;
+            _publicCertificate = publicCertificate;
         }
         
         /// <summary>
@@ -26,7 +26,7 @@ namespace iDeal.SignatureProviders
             var hash = new SHA1CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(messageDigest));
 
             //Step 2: Sign with 1024 bits private key (RSA)
-            var rsaCryptoServiceProvider = (RSACryptoServiceProvider)_certificate.PrivateKey; // Create rsa crypto provider from private key contained in certificate, weirdest cast ever!
+            var rsaCryptoServiceProvider = (RSACryptoServiceProvider)_privateCertificate.PrivateKey; // Create rsa crypto provider from private key contained in certificate, weirdest cast ever!
             var encryptedMessage = rsaCryptoServiceProvider.SignHash(hash, "SHA1");
 
             // Step 3: Base64 encode string for storage in xml request
@@ -46,25 +46,25 @@ namespace iDeal.SignatureProviders
             // Step 2: Base 64 deocde signature
             var decodedSignature = System.Convert.FromBase64String(signature);
 
-            // Step 3: Verify signature with public key from bank certificate
-            var rsaCryptoServiceProvider = (RSACryptoServiceProvider)_bankCertificate.PublicKey.Key;
+            // Step 3: Verify signature with public key
+            var rsaCryptoServiceProvider = (RSACryptoServiceProvider)_publicCertificate.PublicKey.Key;
             return rsaCryptoServiceProvider.VerifyHash(hash, "SHA1", decodedSignature);
         }
 
         /// <summary>
-        /// Gets thumbprint of certificate, used in each request to the ideal api (stored in field token)
+        /// Gets thumbprint of private certificate, used in each request to the ideal api (stored in field token)
         /// </summary>
-        public string GetThumbprint()
+        public string GetThumbprintPrivateCertificate()
         {
-            return _certificate.Thumbprint;
+            return _privateCertificate.Thumbprint;
         }
 
         /// <summary>
-        /// Gets thumbprint of bank certificate, used in status response from ideal api
+        /// Gets thumbprint of public certificate, used in status response from ideal api
         /// </summary>
-        public string GetThumbprintBankCertificate()
+        public string GetThumbprintPublicCertificate()
         {
-            return _bankCertificate.Thumbprint;
+            return _publicCertificate.Thumbprint;
         }
 
         

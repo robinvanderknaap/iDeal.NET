@@ -81,7 +81,7 @@ namespace iDeal.Tests.Unit
         public void CanGetXmlRepresentationOfRequest()
         {
             var directoryRequest = new DirectoryRequest("ABCD", null);
-            var xml = directoryRequest.ToXml(new SignatureProviders.SignatureProvider(Certificate, BankCertificate));
+            var xml = directoryRequest.ToXml(new SignatureProviders.SignatureProvider(PrivateCertificate, PublicCertificate));
             Assert.IsNotNullOrEmpty(xml);
         }
 

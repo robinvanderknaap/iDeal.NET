@@ -27,12 +27,12 @@ namespace iDeal.Status
         public string ConsumerAccountNumber { get; private set; }
 
         /// <summary>
-        /// Thumbprint of bank certificate
+        /// Thumbprint of public certificate
         /// </summary>
         public string Fingerprint { get; private set; }
 
         /// <summary>
-        /// Digital signature provided by the bank
+        /// Digital signature provided by the bank/acceptant
         /// </summary>
         public string SignatureValue { get; private set; }
 

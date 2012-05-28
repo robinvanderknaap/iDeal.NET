@@ -9,8 +9,8 @@ namespace iDeal.Tests.Util
     [TestFixture]
     public class TestFixture
     {
-        protected readonly X509Certificate2 Certificate = new X509Certificate2("Util\\TestCertificates\\idealsim_private.pfx", "idealsim");
-        protected readonly X509Certificate2 BankCertificate = new X509Certificate2("Util\\TestCertificates\\idealsim_bank.cer");
+        protected readonly X509Certificate2 PrivateCertificate = new X509Certificate2("Util\\TestCertificates\\idealsim_private.pfx", "idealsim");
+        protected readonly X509Certificate2 PublicCertificate = new X509Certificate2("Util\\TestCertificates\\idealsim_public.cer");
 
         /// <summary>
         /// Ideal-simulator has an expired ssl certificate on their server, this makes sure the webrequest isn't cancelled
@@ -33,8 +33,8 @@ namespace iDeal.Tests.Util
             {
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
                 MerchantId = "123456789",
-                Certificate = Certificate,
-                BankCertificate = BankCertificate
+                PrivateCertificate = PrivateCertificate,
+                PublicCertificate = PublicCertificate
             };
         }
     }

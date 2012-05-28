@@ -20,39 +20,39 @@ namespace iDeal.Configuration
             get { return Aquirer.Url; }
         }
 
-        public string CertificateName
+        public string PrivateCertificateName
         {
-            get { return Certificate.Name; }
+            get { return PrivateCertificate.Name; }
         }
 
-        public string CertificateStoreName
+        public string PrivateCertificateStoreName
         {
-            get { return Certificate.StoreName; }
+            get { return PrivateCertificate.StoreName; }
         }
 
-        public string CertificateFilename
+        public string PrivateCertificateFilename
         {
-            get { return Certificate.Filename; }
+            get { return PrivateCertificate.Filename; }
         }
 
-        public string CertificatePassword
+        public string PrivateCertificatePassword
         {
-            get { return Certificate.Password; }
+            get { return PrivateCertificate.Password; }
         }
 
-        public string BankCertificateName
+        public string PublicCertificateName
         {
-            get { return BankCertificate.Name; }
+            get { return PublicCertificate.Name; }
         }
 
-        public string BankCertificateStoreName
+        public string PublicCertificateStoreName
         {
-            get { return BankCertificate.StoreName; }
+            get { return PublicCertificate.StoreName; }
         }
 
-        public string BankCertificateFilename
+        public string PublicCertificateFilename
         {
-            get { return BankCertificate.Filename; }
+            get { return PublicCertificate.Filename; }
         }
 
         
@@ -74,21 +74,21 @@ namespace iDeal.Configuration
             }
         }
 
-        [ConfigurationProperty("certificate")]
-        public CertificateElement Certificate
+        [ConfigurationProperty("privateCertificate")]
+        public PrivateCertificateElement PrivateCertificate
         {
             get
             {
-                return (CertificateElement)this["certificate"];
+                return (PrivateCertificateElement)this["privateCertificate"];
             }
         }
 
-        [ConfigurationProperty("bankCertificate")]
-        public BankCertificateElement BankCertificate
+        [ConfigurationProperty("publicCertificate")]
+        public PublicCertificateElement PublicCertificate
         {
             get
             {
-                return (BankCertificateElement)this["bankCertificate"];
+                return (PublicCertificateElement)this["publicCertificate"];
             }
         }
     }
@@ -123,7 +123,7 @@ namespace iDeal.Configuration
         }
     }
 
-    public class CertificateElement : ConfigurationElement
+    public class PrivateCertificateElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = false)]
         public String Name
@@ -162,7 +162,7 @@ namespace iDeal.Configuration
         }
     }
 
-    public class BankCertificateElement : ConfigurationElement
+    public class PublicCertificateElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = false)]
         public String Name

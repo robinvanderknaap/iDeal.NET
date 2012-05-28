@@ -11,18 +11,18 @@ namespace iDeal.Tests.Util
 
         public string AcquirerUrl { get; set; }
 
-        public string CertificateName { get; set; }
+        public string PrivateCertificateName { get; set; }
 
-        public string CertificateStoreName { get; set; }
+        public string PrivateCertificateStoreName { get; set; }
 
-        public string CertificateFilename { get; set; }
+        public string PrivateCertificateFilename { get; set; }
 
-        public string CertificatePassword { get; set; }
+        public string PrivateCertificatePassword { get; set; }
 
-        public string BankCertificateName { get; set; }
+        public string PublicCertificateName { get; set; }
 
-        public string BankCertificateStoreName { get; set; }
+        public string PublicCertificateStoreName { get; set; }
 
-        public string BankCertificateFilename { get; set; }
+        public string PublicCertificateFilename { get; set; }
     }
 }

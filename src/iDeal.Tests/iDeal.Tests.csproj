@@ -123,7 +123,7 @@
     <None Include="Util\TestCertificates\CertificateWithoutPrivateKey.cer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Util\TestCertificates\idealsim_bank.cer">
+    <None Include="Util\TestCertificates\idealsim_public.cer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Util\TestCertificates\idealsim_private.pfx">

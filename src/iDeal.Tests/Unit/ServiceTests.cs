@@ -68,23 +68,34 @@ namespace iDeal.Tests.Unit
         }
 
         [Test]
-        public void CannotCreateServiceWithoutCertificate()
+        public void CannotCreateServiceWithoutPrivateCertificate()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
                 var configuration = GetTestConfiguration();
-                configuration.Certificate = null;
+                configuration.PrivateCertificate = null;
                 new iDealService(configuration);
             });
         }
 
         [Test]
-        public void CannotCreateServiceWithoutPrivateKeyInCertificate()
+        public void CannotCreateServiceWithoutPrivateKeyInPrivateCertificate()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
                 var configuration = GetTestConfiguration();
-                configuration.Certificate = new X509Certificate2("Util\\TestCertificates\\CertificateWithoutPrivateKey.cer");
+                configuration.PrivateCertificate = new X509Certificate2("Util\\TestCertificates\\CertificateWithoutPrivateKey.cer");
+                new iDealService(configuration);
+            });
+        }
+
+        [Test]
+        public void CannotCreateServiceWithoutPublicCertificate()
+        {
+            Assert.Throws<ConfigurationErrorsException>(delegate
+            {
+                var configuration = GetTestConfiguration();
+                configuration.PublicCertificate = null;
                 new iDealService(configuration);
             });
         }

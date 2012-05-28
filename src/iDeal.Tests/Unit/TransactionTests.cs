@@ -98,7 +98,7 @@ namespace iDeal.Tests.Unit
         public void CanGetXmlRepresentationOfTransactionRequest()
         {
             var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
-            var xml = transactionRequest.ToXml(new SignatureProvider(Certificate, BankCertificate));
+            var xml = transactionRequest.ToXml(new SignatureProvider(PrivateCertificate, PublicCertificate));
             Assert.IsNotNullOrEmpty(xml);
         }
 

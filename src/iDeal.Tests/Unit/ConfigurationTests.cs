@@ -16,13 +16,13 @@ namespace iDeal.Tests.Unit
             Assert.AreEqual("123456789", config.Merchant.Id);
             Assert.AreEqual(0, config.Merchant.SubId);
             Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.Aquirer.Url);
-            Assert.AreEqual("Util\\TestCertificates\\idealsim_private.pfx", config.Certificate.Filename);
-            Assert.AreEqual("idealsim", config.Certificate.Password);
-            Assert.AreEqual("My", config.Certificate.StoreName);
-            Assert.AreEqual("Test", config.Certificate.Name);
-            Assert.AreEqual("My", config.BankCertificate.StoreName);
-            Assert.AreEqual("TestBank", config.BankCertificate.Name);
-            Assert.AreEqual("Util\\TestCertificates\\idealsim_bank.cer", config.BankCertificate.Filename);
+            Assert.AreEqual("Util\\TestCertificates\\idealsim_private.pfx", config.PrivateCertificate.Filename);
+            Assert.AreEqual("idealsim", config.PrivateCertificate.Password);
+            Assert.AreEqual("My", config.PrivateCertificate.StoreName);
+            Assert.AreEqual("Test", config.PrivateCertificate.Name);
+            Assert.AreEqual("My", config.PublicCertificate.StoreName);
+            Assert.AreEqual("TestBank", config.PublicCertificate.Name);
+            Assert.AreEqual("Util\\TestCertificates\\idealsim_bank.cer", config.PublicCertificate.Filename);
         }
 
         [Test]
@@ -34,8 +34,8 @@ namespace iDeal.Tests.Unit
             Assert.AreEqual("123456789", config.MerchantId);
             Assert.AreEqual(0, config.MerchantSubId);
             Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.AcquirerUrl);
-            Assert.IsNotNull(config.Certificate);
-            Assert.IsNotNull(config.BankCertificate);
+            Assert.IsNotNull(config.PrivateCertificate);
+            Assert.IsNotNull(config.PublicCertificate);
         }
 
         [Test]
@@ -46,16 +46,16 @@ namespace iDeal.Tests.Unit
                 MerchantId = "123456789",
                 MerchantSubId = 0,
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                CertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                CertificatePassword = "idealsim",
-                BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                PrivateCertificatePassword = "idealsim",
+                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
             });
 
             Assert.AreEqual("123456789", config.MerchantId);
             Assert.AreEqual(0, config.MerchantSubId);
             Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.AcquirerUrl);
-            Assert.IsNotNull(config.Certificate);
-            Assert.IsNotNull(config.BankCertificate);
+            Assert.IsNotNull(config.PrivateCertificate);
+            Assert.IsNotNull(config.PublicCertificate);
         }
 
         [Test]
@@ -68,14 +68,14 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificatePassword = "idealsim",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificatePassword = "idealsim",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }
 
         [Test]
-        public void AtLeastStoreNameOrFileNameShouldBeSpecifiedForBankCertificateToCreateADefaultConfiguration()
+        public void AtLeastStoreNameOrFileNameShouldBeSpecifiedForPublicCertificateToCreateADefaultConfiguration()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
@@ -84,8 +84,8 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    CertificatePassword = "idealsim",
+                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    PrivateCertificatePassword = "idealsim",
                 });
             });
         }
@@ -100,8 +100,8 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }
@@ -114,17 +114,17 @@ namespace iDeal.Tests.Unit
                 MerchantId = "123456789",
                 MerchantSubId = 0,
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                CertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                CertificatePassword = "idealsim",
-                CertificateStoreName = "bogus",
-                CertificateName = "bogus",
-                BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer",
-                BankCertificateStoreName = "bogus",
-                BankCertificateName = "bogus"
+                PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                PrivateCertificatePassword = "idealsim",
+                PrivateCertificateStoreName = "bogus",
+                PrivateCertificateName = "bogus",
+                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer",
+                PublicCertificateStoreName = "bogus",
+                PublicCertificateName = "bogus"
             });
 
-            Assert.IsNotNull(config.Certificate);
-            Assert.IsNotNull(config.BankCertificate);
+            Assert.IsNotNull(config.PrivateCertificate);
+            Assert.IsNotNull(config.PublicCertificate);
         }
 
         [Test]
@@ -137,16 +137,16 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    CertificatePassword = "idealsim",
-                    CertificateStoreName = "bogus",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    PrivateCertificatePassword = "idealsim",
+                    PrivateCertificateStoreName = "bogus",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }
 
         [Test]
-        public void WhenStorenameIsSetForBankCertificateAlsoCertificateNameShouldBeSupplied()
+        public void WhenStorenameIsSetForPublicCertificateAlsoCertificateNameShouldBeSupplied()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
@@ -155,10 +155,10 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    CertificatePassword = "idealsim",
-                    BankCertificateStoreName = "bogus",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    PrivateCertificatePassword = "idealsim",
+                    PublicCertificateStoreName = "bogus",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }
@@ -173,9 +173,9 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateFilename = "Util\\TestCertificates\\idealsim_private.bogus",
-                    CertificatePassword = "idealsim",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.bogus",
+                    PrivateCertificatePassword = "idealsim",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }
@@ -190,9 +190,9 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateStoreName = "Bogus",
-                    CertificateName = "Bogus",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificateStoreName = "Bogus",
+                    PrivateCertificateName = "Bogus",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }
@@ -207,9 +207,9 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    CertificateStoreName = "My",
-                    CertificateName = "Bogus",
-                    BankCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PrivateCertificateStoreName = "My",
+                    PrivateCertificateName = "Bogus",
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
                 });
             });
         }

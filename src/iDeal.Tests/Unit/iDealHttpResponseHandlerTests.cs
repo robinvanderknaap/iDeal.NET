@@ -57,7 +57,7 @@ namespace iDeal.Tests.Unit
             // Setup signature provider
             var signatureProvider = new Mock<ISignatureProvider>();
             signatureProvider.Setup(x => x.VerifySignature("LAwZjEiH+Z8BAzRTNGopGq3OT8V80if3H6pKcNfWcyyXb0yqzYcX3/+vkTeirq+A4Sv7UuVdrcmGqzbZW7kDzX1/fxbyGahfYlsbysQLvxDdR6ExIjHohRx1RHwFZ1NO1hbw3R4ab27hHBz43gtytz4YP5nT6B9zwW+eHIlNIuY=", "2012-05-19T12:20:01.000Z0000000000078316Success108429563")).Returns(true);
-            signatureProvider.Setup(x => x.GetThumbprintBankCertificate()).Returns("6CFC36389C7A3C49440B8733D258CB2167FAC18F");
+            signatureProvider.Setup(x => x.GetThumbprintPublicCertificate()).Returns("6CFC36389C7A3C49440B8733D258CB2167FAC18F");
             
             var responseHandler = new iDealHttpResponseHandler();
 
@@ -80,7 +80,7 @@ namespace iDeal.Tests.Unit
             // Setup signature provider
             var signatureProvider = new Mock<ISignatureProvider>();
             signatureProvider.Setup(x => x.VerifySignature("LAwZjEiH+Z8BAzRTNGopGq3OT8V80if3H6pKcNfWcyyXb0yqzYcX3/+vkTeirq+A4Sv7UuVdrcmGqzbZW7kDzX1/fxbyGahfYlsbysQLvxDdR6ExIjHohRx1RHwFZ1NO1hbw3R4ab27hHBz43gtytz4YP5nT6B9zwW+eHIlNIuY=", "2012-05-19T12:20:01.000Z0000000000078316Success108429563")).Returns(true);
-            signatureProvider.Setup(x => x.GetThumbprintBankCertificate()).Returns("bogus");
+            signatureProvider.Setup(x => x.GetThumbprintPublicCertificate()).Returns("bogus");
 
             var responseHandler = new iDealHttpResponseHandler();
 
@@ -97,7 +97,7 @@ namespace iDeal.Tests.Unit
             // Setup signature provider
             var signatureProvider = new Mock<ISignatureProvider>();
             signatureProvider.Setup(x => x.VerifySignature("LAwZjEiH+Z8BAzRTNGopGq3OT8V80if3H6pKcNfWcyyXb0yqzYcX3/+vkTeirq+A4Sv7UuVdrcmGqzbZW7kDzX1/fxbyGahfYlsbysQLvxDdR6ExIjHohRx1RHwFZ1NO1hbw3R4ab27hHBz43gtytz4YP5nT6B9zwW+eHIlNIuY=", "2012-05-19T12:20:01.000Z0000000000078316Success108429563")).Returns(false);
-            signatureProvider.Setup(x => x.GetThumbprintBankCertificate()).Returns("6CFC36389C7A3C49440B8733D258CB2167FAC18F");
+            signatureProvider.Setup(x => x.GetThumbprintPublicCertificate()).Returns("6CFC36389C7A3C49440B8733D258CB2167FAC18F");
 
             var responseHandler = new iDealHttpResponseHandler();
 

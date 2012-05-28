@@ -28,7 +28,7 @@ namespace iDeal.Http
                     var statusResponse = new StatusResponse(response);
 
                     // Check fingerprint
-                    if (statusResponse.Fingerprint != signatureProvider.GetThumbprintBankCertificate())
+                    if (statusResponse.Fingerprint != signatureProvider.GetThumbprintPublicCertificate())
                         throw new SecurityException("Signature fingerprint from status respone does not match fingerprint bank certificate");
 
                     // Check digital signature
