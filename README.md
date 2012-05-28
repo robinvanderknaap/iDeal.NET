@@ -27,11 +27,11 @@ Second implement the iDeal section
 	<iDeal>
       <merchant id="123456789" subId="0" />
       <acquirer url="https://www.ideal-simulator.nl:443/professional/" />
-      <certificate filename="App_Data\idealsim_private.pfx" password="idealsim" />
-      <bankCertificate filename="App_Data\idealsim_bank.cer" />
+      <privateCertificate filename="App_Data\idealsim_private.pfx" password="idealsim" />
+      <publicCertificate filename="App_Data\idealsim_bank.cer" />
     </iDeal>
 
-The merchant id is the unique identifier you received from your iDeal provider(acquirer). The acquirer url points to the url of your acquirer which handles all iDeal requests. Certificate filename specifies the relative path to the file containing your private key. The bank certificate filename points to your public key. It's also possible to specify a certificate in your certificate store, this is explained below.
+The merchant id is the unique identifier you received from your iDeal provider(acquirer). The acquirer url points to the url of your acquirer which handles all iDeal requests. Private certificate filename specifies the relative path to the file containing your private key. The public certificate filename points to your public key. It's also possible to specify a certificate in your certificate store, this is explained below.
 
 ## Directory request
 In order for customers to make a payment, they first have to choose their bank. To retrieve a list of banks (issuers) which consumers can choose from, you have to send a directory request to your iDeal provider (acquirer). This is how you send a directory request with iDeal.NET:
