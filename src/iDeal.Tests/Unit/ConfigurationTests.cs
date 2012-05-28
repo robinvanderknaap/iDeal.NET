@@ -22,7 +22,7 @@ namespace iDeal.Tests.Unit
             Assert.AreEqual("Test", config.PrivateCertificate.Name);
             Assert.AreEqual("My", config.PublicCertificate.StoreName);
             Assert.AreEqual("TestBank", config.PublicCertificate.Name);
-            Assert.AreEqual("Util\\TestCertificates\\idealsim_bank.cer", config.PublicCertificate.Filename);
+            Assert.AreEqual("Util\\TestCertificates\\idealsim_public.cer", config.PublicCertificate.Filename);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace iDeal.Tests.Unit
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
                 PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
                 PrivateCertificatePassword = "idealsim",
-                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
             });
 
             Assert.AreEqual("123456789", config.MerchantId);
@@ -69,7 +69,7 @@ namespace iDeal.Tests.Unit
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
                     PrivateCertificatePassword = "idealsim",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
                 });
             });
         }
@@ -118,7 +118,7 @@ namespace iDeal.Tests.Unit
                 PrivateCertificatePassword = "idealsim",
                 PrivateCertificateStoreName = "bogus",
                 PrivateCertificateName = "bogus",
-                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer",
+                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer",
                 PublicCertificateStoreName = "bogus",
                 PublicCertificateName = "bogus"
             });
