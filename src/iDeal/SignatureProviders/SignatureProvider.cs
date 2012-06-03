@@ -52,17 +52,17 @@ namespace iDeal.SignatureProviders
         }
 
         /// <summary>
-        /// Gets thumbprint of private certificate, used in each request to the ideal api (stored in field token)
+        /// Gets thumbprint of acceptant's certificate, used in each request to the ideal api (stored in field token)
         /// </summary>
-        public string GetThumbprintPrivateCertificate()
+        public string GetThumbprintAcceptantCertificate()
         {
             return _privateCertificate.Thumbprint;
         }
 
         /// <summary>
-        /// Gets thumbprint of public certificate, used in status response from ideal api
+        /// Gets thumbprint of the acquirer's certificate, used in status response from ideal api
         /// </summary>
-        public string GetThumbprintPublicCertificate()
+        public string GetThumbprintAcquirerCertificate()
         {
             return _publicCertificate.Thumbprint;
         }

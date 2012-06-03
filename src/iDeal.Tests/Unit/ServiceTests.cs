@@ -73,7 +73,7 @@ namespace iDeal.Tests.Unit
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
                 var configuration = GetTestConfiguration();
-                configuration.PrivateCertificate = null;
+                configuration.AcceptantCertificate = null;
                 new iDealService(configuration);
             });
         }
@@ -84,7 +84,7 @@ namespace iDeal.Tests.Unit
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
                 var configuration = GetTestConfiguration();
-                configuration.PrivateCertificate = new X509Certificate2("Util\\TestCertificates\\CertificateWithoutPrivateKey.cer");
+                configuration.AcceptantCertificate = new X509Certificate2("Util\\TestCertificates\\CertificateWithoutPrivateKey.cer");
                 new iDealService(configuration);
             });
         }
@@ -95,7 +95,7 @@ namespace iDeal.Tests.Unit
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
                 var configuration = GetTestConfiguration();
-                configuration.PublicCertificate = null;
+                configuration.AcquirerCertificate = null;
                 new iDealService(configuration);
             });
         }

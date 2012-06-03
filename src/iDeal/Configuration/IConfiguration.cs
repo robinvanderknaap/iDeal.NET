@@ -7,7 +7,7 @@ namespace iDeal.Configuration
         string MerchantId { get; }
         int MerchantSubId { get; }
         string AcquirerUrl { get; }
-        X509Certificate2 PrivateCertificate { get; }
-        X509Certificate2 PublicCertificate { get; }
+        X509Certificate2 AcceptantCertificate { get; }
+        X509Certificate2 AcquirerCertificate { get; }
     }
 }

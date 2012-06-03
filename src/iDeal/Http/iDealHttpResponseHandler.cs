@@ -28,12 +28,12 @@ namespace iDeal.Http
                     var statusResponse = new StatusResponse(response);
 
                     // Check fingerprint
-                    if (statusResponse.Fingerprint != signatureProvider.GetThumbprintPublicCertificate())
-                        throw new SecurityException("Signature fingerprint from status respone does not match fingerprint bank certificate");
+                    if (statusResponse.Fingerprint != signatureProvider.GetThumbprintAcquirerCertificate())
+                        throw new SecurityException("Signature fingerprint from status respone does not match fingerprint acquirer's certificate");
 
                     // Check digital signature
                     if (!signatureProvider.VerifySignature(statusResponse.SignatureValue, statusResponse.MessageDigest))
-                        throw new SecurityException("Signature status response from bank is not valid");
+                        throw new SecurityException("Signature status response from acquirer's certificate is not valid");
                     
                         
                     return statusResponse;

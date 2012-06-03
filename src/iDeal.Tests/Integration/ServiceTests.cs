@@ -43,8 +43,8 @@ namespace iDeal.Tests.Integration
             var bogusConfiguration = new TestConfiguration
             {
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                PrivateCertificate = PrivateCertificate,
-                PublicCertificate = PublicCertificate,
+                AcceptantCertificate = PrivateCertificate,
+                AcquirerCertificate = PublicCertificate,
                 MerchantSubId = 0,
                 MerchantId = "000000000" // faulty merchant id
             };

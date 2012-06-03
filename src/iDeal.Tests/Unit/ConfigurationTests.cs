@@ -15,14 +15,16 @@ namespace iDeal.Tests.Unit
 
             Assert.AreEqual("123456789", config.Merchant.Id);
             Assert.AreEqual(0, config.Merchant.SubId);
-            Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.Aquirer.Url);
-            Assert.AreEqual("Util\\TestCertificates\\idealsim_private.pfx", config.PrivateCertificate.Filename);
-            Assert.AreEqual("idealsim", config.PrivateCertificate.Password);
-            Assert.AreEqual("My", config.PrivateCertificate.StoreName);
-            Assert.AreEqual("Test", config.PrivateCertificate.Name);
-            Assert.AreEqual("My", config.PublicCertificate.StoreName);
-            Assert.AreEqual("TestBank", config.PublicCertificate.Name);
-            Assert.AreEqual("Util\\TestCertificates\\idealsim_public.cer", config.PublicCertificate.Filename);
+            Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.Acquirer.Url);
+            Assert.AreEqual("Util\\TestCertificates\\idealsim_private.pfx", config.AcceptantCertificateFilename);
+            Assert.AreEqual("idealsim", config.AcceptantCertificatePassword);
+            Assert.AreEqual(StoreLocation.LocalMachine, config.AcceptantCertificateStoreLocation);
+            Assert.AreEqual("My", config.AcceptantCertificateStoreName);
+            Assert.AreEqual("48 fa ca 26 2a 9f 76 66 67 f0 bf 2f ed 54 b8 db 16 f9 10 87", config.AcceptantCertificateThumbprint);
+            Assert.AreEqual(StoreLocation.LocalMachine, config.AcquirerCertificateStoreLocation);
+            Assert.AreEqual("My", config.AcquirerCertificateStoreName);
+            Assert.AreEqual("6c fc 36 38 9c 7a 3c 49 44 0b 87 33 d2 58 cb 21 67 fa c1 8f", config.AcquirerCertificateThumbprint);
+            Assert.AreEqual("Util\\TestCertificates\\idealsim_public.cer", config.AcquirerCertificateFilename);
         }
 
         [Test]
@@ -34,8 +36,8 @@ namespace iDeal.Tests.Unit
             Assert.AreEqual("123456789", config.MerchantId);
             Assert.AreEqual(0, config.MerchantSubId);
             Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.AcquirerUrl);
-            Assert.IsNotNull(config.PrivateCertificate);
-            Assert.IsNotNull(config.PublicCertificate);
+            Assert.IsNotNull(config.AcceptantCertificate);
+            Assert.IsNotNull(config.AcquirerCertificate);
         }
 
         [Test]
@@ -46,89 +48,43 @@ namespace iDeal.Tests.Unit
                 MerchantId = "123456789",
                 MerchantSubId = 0,
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                PrivateCertificatePassword = "idealsim",
-                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
+                AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                AcceptantCertificatePassword = "idealsim",
+                AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
             });
 
             Assert.AreEqual("123456789", config.MerchantId);
             Assert.AreEqual(0, config.MerchantSubId);
             Assert.AreEqual("https://www.ideal-simulator.nl:443/professional/", config.AcquirerUrl);
-            Assert.IsNotNull(config.PrivateCertificate);
-            Assert.IsNotNull(config.PublicCertificate);
+            Assert.IsNotNull(config.AcceptantCertificate);
+            Assert.IsNotNull(config.AcquirerCertificate);
         }
 
         [Test]
-        public void AtLeastStoreNameOrFileNameShouldBeSpecifiedForCertificateToCreateDefaultConfiguration()
-        {
-            Assert.Throws<ConfigurationErrorsException>(delegate
-            {
-                new DefaultConfiguration(new TestConfigurationSectionHandler
-                {
-                    MerchantId = "123456789",
-                    MerchantSubId = 0,
-                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificatePassword = "idealsim",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
-                });
-            });
-        }
-
-        [Test]
-        public void AtLeastStoreNameOrFileNameShouldBeSpecifiedForPublicCertificateToCreateADefaultConfiguration()
-        {
-            Assert.Throws<ConfigurationErrorsException>(delegate
-            {
-                new DefaultConfiguration(new TestConfigurationSectionHandler
-                {
-                    MerchantId = "123456789",
-                    MerchantSubId = 0,
-                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    PrivateCertificatePassword = "idealsim",
-                });
-            });
-        }
-
-        [Test]
-        public void WhenFilenameIsSetPasswordShouldAlsoBeSet()
-        {
-            Assert.Throws<ConfigurationErrorsException>(delegate
-            {
-                new DefaultConfiguration(new TestConfigurationSectionHandler
-                {
-                    MerchantId = "123456789",
-                    MerchantSubId = 0,
-                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
-                });
-            });
-        }
-
-        [Test]
-        public void FilenameTakesPresedenceOverStoreName()
+        public void FilenameTakesPresedenceOverStoreLocation()
         {
             var config = new DefaultConfiguration(new TestConfigurationSectionHandler
             {
                 MerchantId = "123456789",
                 MerchantSubId = 0,
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                PrivateCertificatePassword = "idealsim",
-                PrivateCertificateStoreName = "bogus",
-                PrivateCertificateName = "bogus",
-                PublicCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer",
-                PublicCertificateStoreName = "bogus",
-                PublicCertificateName = "bogus"
+                AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                AcceptantCertificatePassword = "idealsim",
+                AcceptantCertificateStoreLocation = StoreLocation.LocalMachine,
+                AcceptantCertificateStoreName = "bogus",
+                AcceptantCertificateThumbprint = "bogus",
+                AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer",
+                AcquirerCertificateStoreLocation = StoreLocation.LocalMachine,
+                AcquirerCertificateStoreName = "bogus",
+                AcquirerCertificateThumbprint = "bogus"
             });
 
-            Assert.IsNotNull(config.PrivateCertificate);
-            Assert.IsNotNull(config.PublicCertificate);
+            Assert.IsNotNull(config.AcceptantCertificate);
+            Assert.IsNotNull(config.AcquirerCertificate);
         }
 
         [Test]
-        public void WhenStorenameIsSetForCertificateAlsoCertificateNameShouldBeSupplied()
+        public void StoreLocationOrFileNameShouldBeSpecifiedForAcceptantCertificateToCreateDefaultConfiguration()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
@@ -137,16 +93,14 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    PrivateCertificatePassword = "idealsim",
-                    PrivateCertificateStoreName = "bogus",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    AcceptantCertificatePassword = "idealsim",
+                    AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer",
                 });
             });
         }
 
         [Test]
-        public void WhenStorenameIsSetForPublicCertificateAlsoCertificateNameShouldBeSupplied()
+        public void WhenFilenameIsSetPasswordShouldAlsoBeSetForAcceptantCertificate()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
@@ -155,10 +109,94 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
-                    PrivateCertificatePassword = "idealsim",
-                    PublicCertificateStoreName = "bogus",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
+                });
+            });
+        }
+
+        [Test]
+        public void WhenStoreLocationIsSetForAcceptantCertificateAlsoStorenameShouldBeSupplied()
+        {
+            Assert.Throws<ConfigurationErrorsException>(delegate
+            {
+                new DefaultConfiguration(new TestConfigurationSectionHandler
+                {
+                    MerchantId = "123456789",
+                    MerchantSubId = 0,
+                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
+                    AcceptantCertificateStoreLocation = StoreLocation.LocalMachine,
+                    AcceptantCertificateThumbprint = "1234",
+                    AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
+                });
+            });
+        }
+
+        [Test]
+        public void WhenStoreLocationIsSetForAcceptantCertificateAlsoCertificateThumbprintShouldBeSupplied()
+        {
+            Assert.Throws<ConfigurationErrorsException>(delegate
+            {
+                new DefaultConfiguration(new TestConfigurationSectionHandler
+                {
+                    MerchantId = "123456789",
+                    MerchantSubId = 0,
+                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
+                    AcceptantCertificateStoreLocation = StoreLocation.LocalMachine,
+                    AcceptantCertificateStoreName = "bogus",
+                    AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
+                });
+            });
+        }
+
+        [Test]
+        public void StoreLocationOrFileNameShouldBeSpecifiedForAcquirerCertificateToCreateDefaultConfiguration()
+        {
+            Assert.Throws<ConfigurationErrorsException>(delegate
+            {
+                new DefaultConfiguration(new TestConfigurationSectionHandler
+                {
+                    MerchantId = "123456789",
+                    MerchantSubId = 0,
+                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
+                    AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    AcceptantCertificatePassword = "idealsim",
+                });
+            });
+        }
+
+        [Test]
+        public void WhenStoreLocationIsSetForAcquirerCertificateAlsoStoreNameShouldBeSupplied()
+        {
+            Assert.Throws<ConfigurationErrorsException>(delegate
+            {
+                new DefaultConfiguration(new TestConfigurationSectionHandler
+                {
+                    MerchantId = "123456789",
+                    MerchantSubId = 0,
+                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
+                    AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    AcceptantCertificatePassword = "idealsim",
+                    AcquirerCertificateStoreLocation = StoreLocation.LocalMachine,
+                    AcquirerCertificateThumbprint = "1234"
+                });
+            });
+        }
+
+        [Test]
+        public void WhenStoreLocationIsSetForAcquirerCertificateAlsoCertificateThumbprintShouldBeSupplied()
+        {
+            Assert.Throws<ConfigurationErrorsException>(delegate
+            {
+                new DefaultConfiguration(new TestConfigurationSectionHandler
+                {
+                    MerchantId = "123456789",
+                    MerchantSubId = 0,
+                    AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
+                    AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.pfx",
+                    AcceptantCertificatePassword = "idealsim",
+                    AcquirerCertificateStoreLocation = StoreLocation.LocalMachine,
+                    AcquirerCertificateStoreName = "bogus"
                 });
             });
         }
@@ -173,9 +211,9 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateFilename = "Util\\TestCertificates\\idealsim_private.bogus",
-                    PrivateCertificatePassword = "idealsim",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_private.bogus",
+                    AcceptantCertificatePassword = "idealsim",
+                    AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
                 });
             });
         }
@@ -190,15 +228,16 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateStoreName = "Bogus",
-                    PrivateCertificateName = "Bogus",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    AcceptantCertificateStoreLocation = StoreLocation.LocalMachine,
+                    AcceptantCertificateStoreName = "Bogus",
+                    AcceptantCertificateThumbprint = "Bogus",
+                    AcquirerCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer"
                 });
             });
         }
 
         [Test]
-        public void ExceptionIsThrownWhenCertificateNameIsNotFound()
+        public void ExceptionIsThrownWhenCertificateThumbprintIsNotFound()
         {
             Assert.Throws<ConfigurationErrorsException>(delegate
             {
@@ -207,9 +246,11 @@ namespace iDeal.Tests.Unit
                     MerchantId = "123456789",
                     MerchantSubId = 0,
                     AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
-                    PrivateCertificateStoreName = "My",
-                    PrivateCertificateName = "Bogus",
-                    PublicCertificateFilename = "Util\\TestCertificates\\idealsim_bank.cer"
+                    AcquirerCertificateStoreLocation = StoreLocation.LocalMachine,
+                    AcquirerCertificateStoreName = "My",
+                    AcquirerCertificateThumbprint = "Bogus",
+                    AcceptantCertificateFilename = "Util\\TestCertificates\\idealsim_public.cer",
+                    AcceptantCertificatePassword = "12345"
                 });
             });
         }

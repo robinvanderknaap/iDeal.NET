@@ -33,8 +33,8 @@ namespace iDeal.Tests.Util
             {
                 AcquirerUrl = "https://www.ideal-simulator.nl:443/professional/",
                 MerchantId = "123456789",
-                PrivateCertificate = PrivateCertificate,
-                PublicCertificate = PublicCertificate
+                AcceptantCertificate = PrivateCertificate,
+                AcquirerCertificate = PublicCertificate
             };
         }
     }

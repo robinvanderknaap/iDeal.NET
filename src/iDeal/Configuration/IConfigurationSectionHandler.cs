@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 namespace iDeal.Configuration
 {
     public interface IConfigurationSectionHandler
@@ -5,12 +6,16 @@ namespace iDeal.Configuration
         string MerchantId { get; }
         int MerchantSubId { get; }
         string AcquirerUrl { get; }
-        string PrivateCertificateName { get; }
-        string PrivateCertificateStoreName { get; }
-        string PrivateCertificateFilename { get; }
-        string PrivateCertificatePassword { get; }
-        string PublicCertificateName { get; }
-        string PublicCertificateStoreName { get; }
-        string PublicCertificateFilename { get; }
+        
+        StoreLocation? AcceptantCertificateStoreLocation { get; }
+        string AcceptantCertificateThumbprint { get; }
+        string AcceptantCertificateStoreName { get; }
+        string AcceptantCertificateFilename { get; }
+        string AcceptantCertificatePassword { get; }
+
+        StoreLocation? AcquirerCertificateStoreLocation { get; }
+        string AcquirerCertificateThumbprint { get; }
+        string AcquirerCertificateStoreName { get; }
+        string AcquirerCertificateFilename { get; }
     }
 }

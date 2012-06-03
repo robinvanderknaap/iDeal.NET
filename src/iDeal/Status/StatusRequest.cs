@@ -55,7 +55,7 @@ namespace iDeal.Status
                             new XElement(xmlNamespace + "merchantID", MerchantId.PadLeft(9, '0')),
                             new XElement(xmlNamespace + "subID", MerchantSubId),
                             new XElement(xmlNamespace + "authentication", "SHA1_RSA"),
-                            new XElement(xmlNamespace + "token", signatureProvider.GetThumbprintPrivateCertificate()),
+                            new XElement(xmlNamespace + "token", signatureProvider.GetThumbprintAcceptantCertificate()),
                             new XElement(xmlNamespace + "tokenCode", signatureProvider.GetSignature(MessageDigest))
                         ),
                         new XElement(xmlNamespace + "Transaction",

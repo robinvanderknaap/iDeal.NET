@@ -12,8 +12,8 @@ namespace iDeal.Tests.Util
 
         public string AcquirerUrl { get; set; }
 
-        public X509Certificate2 PrivateCertificate { get; set; }
+        public X509Certificate2 AcceptantCertificate { get; set; }
 
-        public X509Certificate2 PublicCertificate { get; set; }
+        public X509Certificate2 AcquirerCertificate { get; set; }
     }
 }

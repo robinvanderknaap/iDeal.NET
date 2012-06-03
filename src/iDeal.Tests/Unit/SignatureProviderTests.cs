@@ -31,14 +31,14 @@ namespace iDeal.Tests.Unit
         public void CanGetThumbprint()
         {
             var signatureProvider = new SignatureProvider(PrivateCertificate, PublicCertificate);
-            Assert.AreEqual(PrivateCertificate.Thumbprint, signatureProvider.GetThumbprintPrivateCertificate());
+            Assert.AreEqual(PrivateCertificate.Thumbprint, signatureProvider.GetThumbprintAcceptantCertificate());
         }
 
         [Test]
         public void CanGetThumbprintPublicCertificate()
         {
             var signatureProvider = new SignatureProvider(PrivateCertificate, PublicCertificate);
-            Assert.AreEqual(PublicCertificate.Thumbprint, signatureProvider.GetThumbprintPublicCertificate());
+            Assert.AreEqual(PublicCertificate.Thumbprint, signatureProvider.GetThumbprintAcquirerCertificate());
         }
     }
 }

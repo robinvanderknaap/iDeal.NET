@@ -25,7 +25,7 @@ namespace iDeal
 
         public iDealService(IConfiguration configuration) : 
             this(configuration, 
-                new SignatureProvider(configuration.PrivateCertificate, configuration.PublicCertificate),
+                new SignatureProvider(configuration.AcceptantCertificate, configuration.AcquirerCertificate),
                 new iDealHttpRequest(), 
                 new iDealHttpResponseHandler()){}
 
@@ -40,12 +40,12 @@ namespace iDeal
                 throw new ConfigurationErrorsException("SubId must contain a value ranging from 0 to 6");
             if (configuration.AcquirerUrl.IsNullEmptyOrWhiteSpace())
                 throw new ConfigurationErrorsException("Url of acquirer is not set");
-            if (configuration.PrivateCertificate == null)
-                throw new ConfigurationErrorsException("Private certificate is not set");
-            if (!configuration.PrivateCertificate.HasPrivateKey)
-                throw new ConfigurationErrorsException("Private certificate does not contain private key");
-            if (configuration.PublicCertificate == null)
-                throw new ConfigurationErrorsException("Public certificate is not set");
+            if (configuration.AcceptantCertificate == null)
+                throw new ConfigurationErrorsException("Acceptant's certificate is not set");
+            if (!configuration.AcceptantCertificate.HasPrivateKey)
+                throw new ConfigurationErrorsException("Acceptant's certificate does not contain private key");
+            if (configuration.AcquirerCertificate == null)
+                throw new ConfigurationErrorsException("Acquirer's certificate is not set");
 
             _configuration = configuration;
             _signatureProvider = signatureProvider;
