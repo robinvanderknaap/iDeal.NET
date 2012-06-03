@@ -17,7 +17,7 @@ NuGet packages are available for .NET 3.5 and 4.0 applications. You can also bui
 ## Configuration
 By default iDeal.NET is configured through the web.config or app.config.
 
-First declare the configurationsection
+First declare the configuration section
 
 	<configSections>
       <section name="iDeal" type="iDeal.Configuration.ConfigurationSectionHandler, iDeal" allowLocation="true" allowDefinition="Everywhere" />
@@ -32,12 +32,15 @@ Second implement the iDeal section
 		<acquirerCertificate filename="Util\TestCertificates\idealsim_public.cer" />
     </iDeal>
 
-The merchant id is the unique identifier you received from your iDeal provider(acquirer). The merchant subId is usually 0, or otherwise specified by the acquirer. The acquirer url points to the url of your acquirer which handles all iDeal requests, this will also be given to you by the acquirer. 
-The acceptant certicate is the private certificate created or bought by the acceptant (webshop), the related public key has to be uploaded to your acquirer. See below how to create a new self signed certificate. 
-The acquirer certificate is the certificate you receive from your acquirer, with this certificate responses from the acquirer are verified.
-The filenames of the certificates specify the relative path to the files containing the certificates. Only for the private acceptant certificate is a password needed.
+The merchant id is the unique identifier you received from your iDeal provider(acquirer). The merchant subId is usually 0, or otherwise specified by the acquirer. The url points to the url of your acquirer which handles all iDeal requests.
 
-It's also possible to load the certificates from a certificate store, which is the most secure option:
+The acceptant certicate is the private certificate created or bought by the acceptant (webshop), the related public key has to be uploaded to your acquirer. See below how to create a new self signed certificate. 
+
+The acquirer certificate is the certificate you receive from your ideal provider, with this certificate responses from the acquirer are verified.
+
+The filenames of the certificates specify the relative path to the files containing the certificates. Only for the private acceptant certificate a password is needed.
+
+It's also possible to load the certificates from a certificate store, which is the most secure and preferable option:
 	
 	<iDeal>
         <merchant id="123456789" subId="0" />
@@ -46,7 +49,7 @@ It's also possible to load the certificates from a certificate store, which is t
 		<acquirerCertificate storeLocation="LocalMachine" storeName="My" thumbprint="6c fc 36 38 9c 7a 3c 49 44 0b 87 33 d2 58 cb 21 67 fa c1 8f" />
     </iDeal>
 
-Store location has to be specified, which can be 'LocalMachine' or 'CurrentUser', and the name of the store has to be specified. The thumbprint is used to unique identify the certificate. When you open your certificate in the certificate store (using the management console) you can view the thumbprint. Just copy-paste the thumbprint (iDeal.NET will remove the spaces and is case insensitive).
+The store location has to be specified, which can be 'LocalMachine' or 'CurrentUser'. The name of the store also has to be specified. The thumbprint is used to uniquely identify the certificate. When you open your certificate in the certificate store (using the management console) you can view the thumbprint. Just copy-paste the thumbprint (iDeal.NET will remove the spaces and is case insensitive).
 No password is needed for the acceptant's certificate, that's only needed when the certificate is loaded from the filesystem.
 
 ## Directory request
@@ -103,7 +106,7 @@ Parameter 'trxid' holds the transaction id, and 'ec' holds the entrance code you
 The response contains the status, which can be Success, Failure, Cancelled, Open or Expired. The response also contains the account number, name and city of the customer.
 
 ## Certificates
-In order to use iDeal you need to create (or buy) a ssl certificate. The public key needs to be uploaded to your iDeal provider (acquirer) so they are able to verify your messages. To create a self-signed certifcate you can use [MakeCert](http://msdn.microsoft.com/en-us/library/bfsktky3(v=vs.80).aspx) (use Visual Studio 2010 command prompt) to create a private key and store it into the certificate store, for example:
+In order to use iDeal you need to create (or buy) a ssl certificate. The public key needs to be uploaded to your iDeal provider (acquirer) so they are able to verify your messages. To create a self-signed certifcate you can use [MakeCert](http://msdn.microsoft.com/en-us/library/bfsktky3.aspx) (use Visual Studio 2010 command prompt) to create a private key and store it into the certificate store, for example:
 
     makecert -r -pe -n "CN=yourCertificateName" -b 01/01/2000 -e 01/01/2036 -eku 1.3.6.1.5.5.7.3.1 -ss my -sr LocalMachine -sky exchange -sp "Microsoft RSA SChannel Cryptographic Provider" -sy 12
 	
