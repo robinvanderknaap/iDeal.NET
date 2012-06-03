@@ -109,7 +109,7 @@ In order to use iDeal you need to create (or buy) a ssl certificate. The public 
 	
 This creates a new self-signed certificate which is valid until january 1st 2036. The store location is LocalMachine, the store is called My. You can view this certificate in the management console (run -> mmc). You have to add the certificates module to your console to be able to view the certificate. You can also use the management console to export the public key and, if you need it, also export the private key.
 
-You will receive a public key from your iDeal provider, with which you can verify responses from the provider. You should store also store this certificate in a certificate store, you can import the certificate from the acquirer using the management console.
+You will receive a public key from your iDeal provider, with which you can verify responses from the provider. You should also store this certificate in a certificate store, you can import the certificate from the acquirer using the management console.
 
 
 ## License
