@@ -64,7 +64,6 @@ namespace iDeal.Status
                     )
                 );
 
-            //return directoryRequestXmlMessage.Declaration + directoryRequestXmlMessage.ToString(SaveOptions.OmitDuplicateNamespaces);
             return directoryRequestXmlMessage.Declaration + directoryRequestXmlMessage.ToString(SaveOptions.None);
         }
     }
