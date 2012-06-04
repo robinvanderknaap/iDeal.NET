@@ -11,7 +11,7 @@ The easiest way to get started with iDeal.NET is to use the NuGet package
 
 	Install-Package iDeal.NET
 
-NuGet packages are available for .NET 3.5 and 4.0 applications. You can also build the library from source and reference the iDeal.NET.dll in your applications.
+NuGet packages are available for .NET 3.5 and 4.0 applications. Binaries are available for download [here](https://github.com/robinvanderknaap/iDeal.NET/downloads). You can also build the library from source and reference the iDeal.dll in your applications.
 
 
 ## Configuration
