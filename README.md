@@ -1,6 +1,6 @@
 # iDeal.NET
 iDeal is the leading online payment platform in the Netherlands. iDeal.NET provides an API to easily communicate with your iDeal provider and integrate iDeal payments into your .NET (web)applications.
-The project contains a sample application which gives a basic example of the usage of iDeal.NET. A live version of the sample application is available [here](http://ideal.webpirates.nl). The sample application uses [www.ideal-simulator.nl](http://www.ideal-simulator.nl) to simulate the entire process of paying and retrieving status of payments.
+The project contains a sample application which gives a basic example of the usage of iDeal.NET. A live version of the sample application is available [here](http://ideal.skaele.it). The sample application uses [www.ideal-simulator.nl](http://www.ideal-simulator.nl) to simulate the entire process of paying and retrieving status of payments.
 
 ## iDeal versions
 iDeal.NET is aimed at iDeal Professional (Rabobank), iDeal Zelfbouw (ABN Amro), iDeal Integrated and iDeal Advanced (ING Bank). These versions allow for real-time feedback on transactions. 
@@ -68,7 +68,7 @@ When a customer has choosen an issuer you can send a transaction request to the 
 	// Send transaction request to selected issuer
 	var transactionResponse = _iDealService.SendTransactionRequest(
 		issuerId: 3, 
-		merchantReturnUrl: "http://www.webpirates.nl/landingpage", 
+		merchantReturnUrl: "http://www.skaele.nl/landingpage", 
 		purchaseId: "12345", 
 		amount: 500, 
 		expirationPeriod: TimeSpan.FromMinutes(5), 
