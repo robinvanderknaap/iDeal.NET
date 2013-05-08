@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeal", "src\iDeal\iDeal.csproj", "{A8D1AF36-BA39-48D4-A73B-263133DFD256}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeal.Tests", "src\iDeal.Tests\iDeal.Tests.csproj", "{130EBA56-48FE-422D-8154-F8F3D776391D}"
