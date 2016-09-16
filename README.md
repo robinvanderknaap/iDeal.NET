@@ -1,3 +1,5 @@
+WARNING: THIS LIBRARY IS NOT UP-TO-DATE ANYMORE, SINCE THE RELEASE OF THIS LIBRARY IDEAL SPECS HAVE CHANGED SIGNIFICANTLY!!
+
 # iDeal.NET
 iDeal is the leading online payment platform in the Netherlands. iDeal.NET provides an API to easily communicate with your iDeal provider and integrate iDeal payments into your .NET (web)applications.
 The project contains a sample application which gives a basic example of the usage of iDeal.NET. A live version of the sample application is available [here](http://ideal.skaele.it). The sample application uses [www.ideal-simulator.nl](http://www.ideal-simulator.nl) to simulate the entire process of paying and retrieving status of payments.
